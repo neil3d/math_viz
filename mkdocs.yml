@@ -1,0 +1,17 @@
+site_name: Mathematical Functions for CG
+site_url: https://neil3d.github.io
+site_author: neilfang
+theme:
+  name: material
+  features:
+    - toc.integrate
+markdown_extensions:
+  - toc:
+      permalink: True
+  - footnotes
+  - tables
+plugins:
+  - search
+  - mkdocs-jupyter
+extra_css:
+  - stylesheets/extra.css
