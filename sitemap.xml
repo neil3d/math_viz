@@ -2,37 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://neil3d.github.io/NDFs/</loc>
-         <lastmod>2022-04-04</lastmod>
+         <lastmod>2022-04-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://neil3d.github.io/clamped_cosine/</loc>
-         <lastmod>2022-04-04</lastmod>
+         <lastmod>2022-04-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://neil3d.github.io/fresnel/</loc>
-         <lastmod>2022-04-04</lastmod>
+         <lastmod>2022-04-05</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://neil3d.github.io/noise/</loc>
+         <lastmod>2022-04-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://neil3d.github.io/phase_functions/</loc>
-         <lastmod>2022-04-04</lastmod>
+         <lastmod>2022-04-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://neil3d.github.io/spherical_distributions/</loc>
-         <lastmod>2022-04-04</lastmod>
+         <lastmod>2022-04-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://neil3d.github.io/spherical_gaussians/</loc>
-         <lastmod>2022-04-04</lastmod>
+         <lastmod>2022-04-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://neil3d.github.io/spherical_harmonics/</loc>
-         <lastmod>2022-04-04</lastmod>
+         <lastmod>2022-04-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
