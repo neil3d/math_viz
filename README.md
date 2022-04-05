@@ -1,1 +1,3 @@
-# 一些常用数学函数的可视化
+# Mathematical Functions for Computer Graphics
+
+- TODO

@@ -1,10 +1,20 @@
 site_name: Mathematical Functions for CG
 site_url: https://neil3d.github.io
+repo_url: https://github.com/neil3d/math_viz
 site_author: neilfang
+copyright: Copyright &copy; 2022 Neil Fang
 theme:
   name: material
+  logo: images/favicon.ico
+  favicon: images/favicon.ico
   features:
     - toc.integrate
+extra:
+  homepage: https://neil3d.github.io
+  generator: false
+  social:
+    - icon: fontawesome/brands/github
+      link: https://neil3d.github.io
 markdown_extensions:
   - toc:
       permalink: True
