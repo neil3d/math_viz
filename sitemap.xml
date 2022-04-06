@@ -10,4 +10,14 @@
          <lastmod>2022-04-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
+    <url>
+         <loc>https://neil3d.github.io/umath_viz/__init__/</loc>
+         <lastmod>2022-04-06</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://neil3d.github.io/umath_viz/spherical_plot/</loc>
+         <lastmod>2022-04-06</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
 </urlset>
