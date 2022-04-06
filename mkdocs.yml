@@ -24,5 +24,6 @@ plugins:
   - search
   - mkdocs-jupyter:
       execute: False
+      ignore: ["umath_viz/*"]
 extra_css:
   - stylesheets/extra.css
