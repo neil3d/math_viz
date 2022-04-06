@@ -34,7 +34,8 @@ def heatmap(distribution_func, **params):
     
     ax.plot_surface(X, Y, Z, rstride=1, cstride=1, cmap=coolwarm, facecolors=fcolors,
         linewidth=0, antialiased=False)
-
-    plt.title(distribution_func.__name__)
+    
+    title = distribution_func.__name__
+    plt.title(title.replace('_',' ').capitalize())
     plt.show()
 
