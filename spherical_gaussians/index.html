@@ -257,42 +257,29 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    球面高斯函数的定义
+  <a href="#motivation" class="md-nav__link">
+    Motivation
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    球面高斯函数的一些运算
+  <a href="#definition" class="md-nav__link">
+    Definition
   </a>
   
-    <nav class="md-nav" aria-label="球面高斯函数的一些运算">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#the-inner-product" class="md-nav__link">
     The Inner Product
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
-  
-</li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    相关应用场景
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    可视化
+  <a href="#visualization" class="md-nav__link">
+    Visualization
   </a>
   
 </li>
@@ -1397,7 +1384,46 @@ Licensed under the Apache License, Version 2.0.
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="">&#29699;&#38754;&#39640;&#26031;&#20989;&#25968;&#30340;&#23450;&#20041;<a class="anchor-link" href="#">&#182;</a></h2>$$
+<h2 id="motivation">Motivation<a class="anchor-link" href="#motivation">&#182;</a></h2>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>回顾渲染方程：
+$$
+L_r(\omega_o) = \int\limits_\Omega f(\omega_i, \omega_o) L_i(\omega_i) \max(0, n \cdot \omega_i) d \omega_i
+$$</p>
+<p>其中:</p>
+<ul>
+<li>BRDF：$f(\omega_i, \omega_o)$</li>
+<li>入射光：$L_i(\omega_i)$</li>
+<li>Clamped Cosine：$\max(0, n \cdot \omega_i)$  </li>
+</ul>
+<p>都可以看做是定义在球面上的函数。由于它们是很复杂的函数，在离线渲染中，可以使用蒙特卡洛方法来求数值解。还有一个思路是：使用形式更简单的函数来近似这几个函数，然后求出解析解。</p>
+<p>球面高斯函数就是可以用来做这种近似的一个函数，主要有两方面的原因：</p>
+<ol>
+<li>它的积分比较好求，因为：$\int e^x d x = e^x$</li>
+<li>两个球面高斯函数的内积，有一个解决解，详见：The Inner Product 一节</li>
+</ol>
+<p>使用球面高斯函数近似求解渲染方程的详细推导，可见参考资料: [^1]</p>
+
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="definition">Definition<a class="anchor-link" href="#definition">&#182;</a></h2>$$
 G(\mathbf{v} ; \mathbf{p}, \lambda, \mu)=\mu e^{\lambda(\mathbf{v} \cdot \mathbf{p}-1)}
 $$<ul>
 <li>$\mathbf{v}$: the spherical parameter of the resulting function, $\mathbf{v} \in \mathbb{S}^{2}$</li>
@@ -1416,18 +1442,7 @@ $$<ul>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="">&#29699;&#38754;&#39640;&#26031;&#20989;&#25968;&#30340;&#19968;&#20123;&#36816;&#31639;<a class="anchor-link" href="#">&#182;</a></h2>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="the-inner-product">The Inner Product<a class="anchor-link" href="#the-inner-product">&#182;</a></h3>$$
+<h2 id="the-inner-product">The Inner Product<a class="anchor-link" href="#the-inner-product">&#182;</a></h2>$$
 G_{1} \cdot G_{2}=\int_{\mathbb{S}^{2}} G_{1}(\mathbf{v}) G_{2}(\mathbf{v}) \mathrm{d} \mathbf{v}=\frac{4 \pi \mu_{1} \mu_{2}}{e^{\lambda_{1}+\lambda_{2}}} \frac{\sinh \left(d_{m}\right)}{d_{m}}
 $$<ul>
 <li>$d_{m}=\left\|\lambda_{1} \mathbf{p}_{1}+\lambda_{2} \mathbf{p}_{2}\right\|$</li>
@@ -1443,21 +1458,7 @@ $$<ul>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="">&#30456;&#20851;&#24212;&#29992;&#22330;&#26223;<a class="anchor-link" href="#">&#182;</a></h2><ul>
-<li>TODO</li>
-</ul>
-
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="">&#21487;&#35270;&#21270;<a class="anchor-link" href="#">&#182;</a></h2>
+<h2 id="visualization">Visualization<a class="anchor-link" href="#visualization">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -1482,11 +1483,11 @@ $$<ul>
                 </div>
             </clipboard-copy>
         </div>
-            <div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
+            <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># configuration</span>
+<span class="n">enable_interact</span> <span class="o">=</span> <span class="kc">False</span>
 </pre></div>
-<div id="cell-1" class="clipboard-copy-txt">import numpy as np
-import ipywidgets as widgets</div>
+<div id="cell-1" class="clipboard-copy-txt"># configuration
+enable_interact = False</div>
     
         </div>
     </div>
@@ -1516,13 +1517,11 @@ import ipywidgets as widgets</div>
                 </div>
             </clipboard-copy>
         </div>
-            <div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../&#39;</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">umath_viz</span> <span class="kn">import</span> <span class="n">spherical_plot</span>
+            <div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
 </pre></div>
-<div id="cell-2" class="clipboard-copy-txt">import sys
-sys.path.append('../')
-from umath_viz import spherical_plot</div>
+<div id="cell-2" class="clipboard-copy-txt">import numpy as np
+import ipywidgets as widgets</div>
     
         </div>
     </div>
@@ -1552,11 +1551,13 @@ from umath_viz import spherical_plot</div>
                 </div>
             </clipboard-copy>
         </div>
-            <div class="highlight-ipynb hl-python"><pre><span></span><span class="k">def</span> <span class="nf">spherical_gaussian</span><span class="p">(</span><span class="n">direction</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">sharpness</span><span class="p">,</span> <span class="n">amplitude</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">amplitude</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">sharpness</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">direction</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+            <div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">umath_viz</span> <span class="kn">import</span> <span class="n">spherical_plot</span>
 </pre></div>
-<div id="cell-3" class="clipboard-copy-txt">def spherical_gaussian(direction, axis, sharpness, amplitude):
-    return amplitude * np.exp(sharpness * (np.dot(axis, direction) - 1))</div>
+<div id="cell-3" class="clipboard-copy-txt">import sys
+sys.path.append('../')
+from umath_viz import spherical_plot</div>
     
         </div>
     </div>
@@ -1565,8 +1566,8 @@ from umath_viz import spherical_plot</div>
 </div>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -1586,27 +1587,59 @@ from umath_viz import spherical_plot</div>
                 </div>
             </clipboard-copy>
         </div>
+            <div class="highlight-ipynb hl-python"><pre><span></span><span class="k">def</span> <span class="nf">spherical_gaussian</span><span class="p">(</span><span class="n">direction</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">sharpness</span><span class="p">,</span> <span class="n">amplitude</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">amplitude</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">sharpness</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">direction</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+</pre></div>
+<div id="cell-4" class="clipboard-copy-txt">def spherical_gaussian(direction, axis, sharpness, amplitude):
+    return amplitude * np.exp(sharpness * (np.dot(axis, direction) - 1))</div>
+    
+        </div>
+    </div>
+
+</div>
+</div>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+        
+        
+        <div class="CodeMirror cm-s-jupyter">
+        <div class="zeroclipboard-container">
+            <clipboard-copy for="cell-5">
+            <div>
+                <span class="notice" hidden>Copied!</span>
+                <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
+                    <path fill="currentColor" fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path>
+                    <path fill="currentColor" fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
+                </svg>
+                </div>
+            </clipboard-copy>
+        </div>
             <div class="highlight-ipynb hl-python"><pre><span></span><span class="k">def</span> <span class="nf">my_plot</span><span class="p">(</span><span class="n">sharpness</span><span class="p">,</span><span class="n">amplitude</span><span class="p">):</span>
     <span class="n">spherical_plot</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">spherical_gaussian</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">sharpness</span> <span class="o">=</span> <span class="n">sharpness</span><span class="p">,</span> <span class="n">amplitude</span><span class="o">=</span><span class="n">amplitude</span><span class="p">)</span>
 
-<span class="n">site_build</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="k">if</span> <span class="n">site_build</span><span class="p">:</span>
-    <span class="n">my_plot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
+<span class="k">if</span> <span class="n">enable_interact</span><span class="p">:</span>
     <span class="n">widgets</span><span class="o">.</span><span class="n">interact</span><span class="p">(</span><span class="n">my_plot</span><span class="p">,</span> 
                  <span class="n">sharpness</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">FloatSlider</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="nb">max</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Sharpness&#39;</span><span class="p">),</span>
                  <span class="n">amplitude</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">FloatSlider</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="nb">max</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Amplitude&#39;</span><span class="p">))</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">my_plot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
-<div id="cell-4" class="clipboard-copy-txt">def my_plot(sharpness,amplitude):
+<div id="cell-5" class="clipboard-copy-txt">def my_plot(sharpness,amplitude):
     spherical_plot.heatmap(spherical_gaussian, axis=[0,0,1], sharpness = sharpness, amplitude=amplitude)
 
-site_build = True
-if site_build:
-    my_plot(3,5)
-else:
+if enable_interact:
     widgets.interact(my_plot, 
                  sharpness=widgets.FloatSlider(value=3, min=0,max=10, description='Sharpness'),
-                 amplitude=widgets.FloatSlider(value=5, min=0,max=10, description='Amplitude'))</div>
+                 amplitude=widgets.FloatSlider(value=5, min=0,max=10, description='Amplitude'))
+else:
+    my_plot(3,5)</div>
     
         </div>
     </div>
@@ -1662,12 +1695,12 @@ jp-needs-light-background
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
         <div class="CodeMirror cm-s-jupyter">
         <div class="zeroclipboard-container">
-            <clipboard-copy for="cell-5">
+            <clipboard-copy for="cell-6">
             <div>
                 <span class="notice" hidden>Copied!</span>
                 <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
@@ -1682,7 +1715,7 @@ jp-needs-light-background
 
 <span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
 </pre></div>
-<div id="cell-5" class="clipboard-copy-txt">import matplotlib.pyplot as plt
+<div id="cell-6" class="clipboard-copy-txt">import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
 
 %matplotlib inline</div>
@@ -1700,12 +1733,12 @@ from scipy.optimize import curve_fit
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
         <div class="CodeMirror cm-s-jupyter">
         <div class="zeroclipboard-container">
-            <clipboard-copy for="cell-6">
+            <clipboard-copy for="cell-7">
             <div>
                 <span class="notice" hidden>Copied!</span>
                 <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
@@ -1754,7 +1787,7 @@ from scipy.optimize import curve_fit
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;lambda_fit = </span><span class="si">{0}</span><span class="s1">, mu_fit = </span><span class="si">{1}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lambda_fit</span><span class="p">,</span> <span class="n">mu_fit</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;MES = &#39;</span><span class="p">,</span> <span class="n">MSE</span><span class="p">(</span><span class="n">approx</span><span class="p">,</span> <span class="n">cc</span><span class="p">))</span>
 </pre></div>
-<div id="cell-6" class="clipboard-copy-txt">def SG(cos_theta, sharpness, amplitude):
+<div id="cell-7" class="clipboard-copy-txt">def SG(cos_theta, sharpness, amplitude):
     p = sharpness*(cos_theta-1)
     return amplitude*np.exp(p)
 
@@ -1851,7 +1884,7 @@ MES =  0.004695321843466131
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="reference">Reference<a class="anchor-link" href="#reference">&#182;</a></h2><ul>
-<li>ACM Transactions on Graphics | January 2007, <a href="https://www.microsoft.com/en-us/research/video/frequency-rendering-dynamic-spatially-varying-re%ef%ac%82ectance/">All-Frequency Rendering of Dynamic, Spatially-Varying Reflectance</a></li>
+<li>[^1]: ACM Transactions on Graphics | January 2007, <a href="https://www.microsoft.com/en-us/research/video/frequency-rendering-dynamic-spatially-varying-re%ef%ac%82ectance/">All-Frequency Rendering of Dynamic, Spatially-Varying Reflectance</a></li>
 </ul>
 
 </div>
