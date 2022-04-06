@@ -1,3 +1,3 @@
-# Mathematical Functions for Computer Graphics
+# Mathematical Visualization for Unreal Engine
 
 - TODO
