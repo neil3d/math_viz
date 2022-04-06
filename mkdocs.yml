@@ -1,4 +1,4 @@
-site_name: Mathematical Functions for CG
+site_name: Mathematical Visualization for Unreal Engine
 site_url: https://neil3d.github.io
 repo_url: https://github.com/neil3d/math_viz
 site_author: neilfang
@@ -22,6 +22,7 @@ markdown_extensions:
   - tables
 plugins:
   - search
-  - mkdocs-jupyter
+  - mkdocs-jupyter:
+      execute: False
 extra_css:
   - stylesheets/extra.css
