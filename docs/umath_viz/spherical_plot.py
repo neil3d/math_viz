@@ -4,7 +4,7 @@ import matplotlib.colors as mcolors
 import mpl_toolkits.mplot3d.axes3d as axes3d
 from matplotlib import cm
 
-def heatmap(distribution_func, **params):
+def heatmap(distribution_func, title, **params):
     COUNT = 200
     Theta, Phi = np.linspace(0, 2 * np.pi, COUNT), np.linspace(0, np.pi, COUNT)
     dist = np.zeros((COUNT,COUNT))
@@ -35,7 +35,6 @@ def heatmap(distribution_func, **params):
     ax.plot_surface(X, Y, Z, rstride=1, cstride=1, cmap=coolwarm, facecolors=fcolors,
         linewidth=0, antialiased=False)
     
-    title = distribution_func.__name__
-    plt.title(title.replace('_',' ').capitalize())
+    plt.title(title)
     plt.show()
 
