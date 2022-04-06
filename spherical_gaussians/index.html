@@ -17,7 +17,7 @@
     
     
       
-        <title>Spherical Gaussians - Mathematical Functions for CG</title>
+        <title>Spherical Gaussians - Mathematical Visualization for Unreal Engine</title>
       
     
     
@@ -79,7 +79,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="https://neil3d.github.io" title="Mathematical Functions for CG" class="md-header__button md-logo" aria-label="Mathematical Functions for CG" data-md-component="logo">
+    <a href="https://neil3d.github.io" title="Mathematical Visualization for Unreal Engine" class="md-header__button md-logo" aria-label="Mathematical Visualization for Unreal Engine" data-md-component="logo">
       
   <img src="../images/favicon.ico" alt="logo">
 
@@ -91,7 +91,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Mathematical Functions for CG
+            Mathematical Visualization for Unreal Engine
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -178,12 +178,12 @@
 
 <nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="https://neil3d.github.io" title="Mathematical Functions for CG" class="md-nav__button md-logo" aria-label="Mathematical Functions for CG" data-md-component="logo">
+    <a href="https://neil3d.github.io" title="Mathematical Visualization for Unreal Engine" class="md-nav__button md-logo" aria-label="Mathematical Visualization for Unreal Engine" data-md-component="logo">
       
   <img src="../images/favicon.ico" alt="logo">
 
     </a>
-    Mathematical Functions for CG
+    Mathematical Visualization for Unreal Engine
   </label>
   
     <div class="md-nav__source">
@@ -1614,20 +1614,13 @@ from umath_viz import spherical_plot</div>
                 </div>
             </clipboard-copy>
         </div>
-            <div class="highlight-ipynb hl-python"><pre><span></span><span class="k">def</span> <span class="nf">my_plot</span><span class="p">(</span><span class="n">sharpness</span><span class="p">,</span><span class="n">amplitude</span><span class="p">):</span>
+            <div class="highlight-ipynb hl-python"><pre><span></span><span class="nd">@widgets</span><span class="o">.</span><span class="n">interact</span><span class="p">(</span><span class="n">sharpness</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">),</span><span class="n">amplitude</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">my_plot</span><span class="p">(</span><span class="n">sharpness</span><span class="p">,</span><span class="n">amplitude</span><span class="p">):</span>
     <span class="n">spherical_plot</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">spherical_gaussian</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">sharpness</span> <span class="o">=</span> <span class="n">sharpness</span><span class="p">,</span> <span class="n">amplitude</span><span class="o">=</span><span class="n">amplitude</span><span class="p">)</span>
-
-<span class="n">widgets</span><span class="o">.</span><span class="n">interact</span><span class="p">(</span><span class="n">my_plot</span><span class="p">,</span> 
-                 <span class="n">sharpness</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">FloatSlider</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="nb">max</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Sharpness&#39;</span><span class="p">),</span>
-                 <span class="n">amplitude</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">FloatSlider</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="nb">max</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Amplitude&#39;</span><span class="p">))</span>
 </pre></div>
-<div id="cell-4" class="clipboard-copy-txt">def my_plot(sharpness,amplitude):
-    spherical_plot.heatmap(spherical_gaussian, axis=[0,0,1], sharpness = sharpness, amplitude=amplitude)
-
-widgets.interact(my_plot, 
-                 sharpness=widgets.FloatSlider(value=3, min=0,max=10, description='Sharpness'),
-                 amplitude=widgets.FloatSlider(value=5, min=0,max=10, description='Amplitude'))
-</div>
+<div id="cell-4" class="clipboard-copy-txt">@widgets.interact(sharpness=(0.0, 10.0, 3.0),amplitude=(0.0, 10.0, 5.0))
+def my_plot(sharpness,amplitude):
+    spherical_plot.heatmap(spherical_gaussian, axis=[0,0,1], sharpness = sharpness, amplitude=amplitude)</div>
     
         </div>
     </div>
@@ -1653,27 +1646,13 @@ widgets.interact(my_plot,
 
 
 
-<div id="f0237e92-bbea-4543-8d90-f65dac0b0724" class="jupyter-widgets jp-OutputArea-output ">
+<div id="a18d3cd5-5519-479c-ba2a-f31b251142c2" class="jupyter-widgets jp-OutputArea-output ">
 <script type="text/javascript">
-var element = document.getElementById('f0237e92-bbea-4543-8d90-f65dac0b0724');
+var element = document.getElementById('a18d3cd5-5519-479c-ba2a-f31b251142c2');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "e111661934a84deb9d6cc72912595c8e"}
+{"version_major": 2, "version_minor": 0, "model_id": "45a5c47935664e9caadbb6d1f2dbb72a"}
 </script>
-</div>
-
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[4]:</div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&lt;function __main__.my_plot(sharpness, amplitude)&gt;</pre>
 </div>
 
 </div>
