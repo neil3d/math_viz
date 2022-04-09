@@ -1,10 +1,8 @@
-import os
-
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib import animation
+from scipy.spatial.transform import Rotation as R
 
-import site_config
 from umath import LTC, spherical_plot
 
 
@@ -25,29 +23,45 @@ def anim_view_rotation(fig, ax):
 
 if __name__ == '__main__':
     # subplot: cosine
-    fig = plt.figure(figsize=[10, 10 * 2])
-    ax1 = fig.add_subplot(2, 1, 1, projection='3d')
-    spherical_plot.heatmap(do_clamped_cosine, ax1)
-    plt.title('Clamped Cosine Distribution')
+    fig = plt.figure(figsize=[10, 10])
+    # ax1 = fig.add_subplot(2, 1, 1, projection='3d')
+    # spherical_plot.heatmap(do_clamped_cosine, ax1)
+    # plt.title('Clamped Cosine Distribution')
 
     # subplot LTC
-    amplitude = 1
-    forward = np.array([0, 1, 0], dtype='float')
-    up = np.array([0, 0, 1], dtype='float')
-    scale = np.array([0.75, 1, 1], dtype='float')
-    skew = 0.5
-    ltc = LTC.LTC(amplitude, forward, up, scale, skew)
+    ax2 = fig.add_subplot(1, 1, 1, projection='3d')
 
-    ax2 = fig.add_subplot(2, 1, 2, projection='3d')
 
-    spherical_plot.heatmap(lambda w: ltc.evaluate(w), ax2)
-    plt.title('Linearly Transformed Cosines')
-    plt.show()
+    def anim_ltc(i):
+        pitch = 0
+        yaw = 0
+        roll = i*10+30
+
+        mat_rot = R.from_euler('xyz', [pitch, yaw, roll], degrees=True).as_matrix()
+
+        amplitude = 1
+        forward = mat_rot[1]
+        up = mat_rot[2]
+
+        scale = np.array([1, 1, 1], dtype='float')
+        skew = 0
+        ltc = LTC.LTC(amplitude, forward, up, scale, skew)
+
+        ax2.clear()
+        plt.title('Linearly Transformed Cosines')
+        spherical_plot.heatmap(lambda w: ltc.evaluate(w), ax2)
+
+
+    anim = animation.FuncAnimation(fig, anim_ltc, frames=range(0, 36))
+    anim.save('LTC.mp4', fps=20,
+              progress_callback=lambda i, n: print('rendering {0} of {1}'.format(i, n))
+              )
+    print('done')
 
     # save figure as image
-    image_path = os.path.join(site_config.plot_output_path, 'LTCs.png')
-    fig.savefig(image_path)
-    print(image_path, 'saved.')
+    # image_path = os.path.join(site_config.plot_output_path, 'LTCs.png')
+    # fig.savefig(image_path)
+    # print(image_path, 'saved.')
 
     # animation
     # anim_view_rotation(fig, ax2)
