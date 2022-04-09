@@ -53,13 +53,13 @@ if __name__ == '__main__':
         spherical_plot.heatmap(lambda w: ltc.evaluate(w), ax2)
 
 
-    star_time = time.clock()
-    anim = animation.FuncAnimation(fig, anim_ltc, frames=range(0, 36))
+    star_time = time.perf_counter()
+    anim = animation.FuncAnimation(fig, anim_ltc, frames=range(0, 3))
     anim.save('LTC.mp4', fps=20,
               progress_callback=lambda i, n: print('rendering {0} of {1}'.format(i, n))
               )
-    time_cost = time.clock()-star_time
-    print('done, {0} seconds'.format(time_cost))
+    time_cost = time.perf_counter()-star_time
+    print('done, {0:.2f} seconds'.format(time_cost))
 
     # save figure as image
     # image_path = os.path.join(site_config.plot_output_path, 'LTCs.png')
