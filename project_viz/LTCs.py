@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib import animation
 from scipy.spatial.transform import Rotation as R
+import time
 
 from umath import LTC, spherical_plot
 
@@ -52,11 +53,13 @@ if __name__ == '__main__':
         spherical_plot.heatmap(lambda w: ltc.evaluate(w), ax2)
 
 
+    star_time = time.clock()
     anim = animation.FuncAnimation(fig, anim_ltc, frames=range(0, 36))
     anim.save('LTC.mp4', fps=20,
               progress_callback=lambda i, n: print('rendering {0} of {1}'.format(i, n))
               )
-    print('done')
+    time_cost = time.clock()-star_time
+    print('done, {0} seconds'.format(time_cost))
 
     # save figure as image
     # image_path = os.path.join(site_config.plot_output_path, 'LTCs.png')
