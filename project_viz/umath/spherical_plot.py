@@ -1,6 +1,6 @@
-import numpy as np
-import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
+import matplotlib.pyplot as plt
+import numpy as np
 
 
 def heatmap(distribution_func, axis3d, **params):
@@ -18,7 +18,7 @@ def heatmap(distribution_func, axis3d, **params):
             x = phi_v[0] * theta_v[1]
             y = phi_v[0] * theta_v[0]
             z = phi_v[1]
-            data[i][j] = distribution_func([x, y, z], **params)
+            data[i, j] = distribution_func([x, y, z], **params)
 
     # mesh grid
     sin_theta_grid, sin_phi_grid = np.meshgrid(sin_theta, sin_phi)
@@ -35,5 +35,4 @@ def heatmap(distribution_func, axis3d, **params):
 
     # plot
     axis3d.plot_surface(x_grid, y_grid, z_grid, rstride=1, cstride=1, cmap=coolwarm, facecolors=fcolors,
-                    linewidth=0, antialiased=False)
-
+                        linewidth=0, antialiased=False)
