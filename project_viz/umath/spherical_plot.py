@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 
 
-def heatmap(distribution_func, title, **params):
-    count = 100
+def heatmap(distribution_func, axis3d, **params):
+    count = 200
     theta, phi = np.linspace(0, 2 * np.pi, count), np.linspace(0, np.pi, count)
     sin_theta = np.sin(theta)
     cos_theta = np.cos(theta)
@@ -34,13 +34,6 @@ def heatmap(distribution_func, title, **params):
     fcolors = coolwarm(norm(data))
 
     # plot
-    fig = plt.figure(figsize=[10, 10])
-    ax = fig.add_subplot(1, 1, 1, projection='3d')
-
-    ax.plot_surface(x_grid, y_grid, z_grid, rstride=1, cstride=1, cmap=coolwarm, facecolors=fcolors,
+    axis3d.plot_surface(x_grid, y_grid, z_grid, rstride=1, cstride=1, cmap=coolwarm, facecolors=fcolors,
                     linewidth=0, antialiased=False)
 
-    plt.title(title)
-    plt.show()
-
-    return fig, ax
