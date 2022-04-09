@@ -4,34 +4,40 @@ import matplotlib.colors as mcolors
 
 
 def heatmap(distribution_func, title, **params):
-    count = 200
+    count = 100
     theta, phi = np.linspace(0, 2 * np.pi, count), np.linspace(0, np.pi, count)
-    dist = np.zeros((count, count))
+    sin_theta = np.sin(theta)
+    cos_theta = np.cos(theta)
+    sin_phi = np.sin(phi)
+    cos_phi = np.cos(phi)
 
-    # values
-    for j, th in enumerate(theta):
-        for i, ph in enumerate(phi):
-            x = np.sin(ph) * np.cos(th)
-            y = np.sin(ph) * np.sin(th)
-            z = np.cos(ph)
-            dist[i][j] = distribution_func([x, y, z], **params)
+    # data values
+    data = np.zeros((count, count))
+    for j, theta_v in enumerate(zip(sin_theta, cos_theta)):
+        for i, phi_v in enumerate(zip(sin_phi, cos_phi)):
+            x = phi_v[0] * theta_v[1]
+            y = phi_v[0] * theta_v[0]
+            z = phi_v[1]
+            data[i][j] = distribution_func([x, y, z], **params)
 
     # mesh grid
-    THETA, PHI = np.meshgrid(theta, phi)
-    X = np.sin(PHI) * np.cos(THETA)
-    Y = np.sin(PHI) * np.sin(THETA)
-    Z = np.cos(PHI)
+    sin_theta_grid, sin_phi_grid = np.meshgrid(sin_theta, sin_phi)
+    cos_theta_grid, cos_phi_grid = np.meshgrid(cos_theta, cos_phi)
+
+    x_grid = sin_phi_grid * cos_theta_grid
+    y_grid = sin_phi_grid * sin_theta_grid
+    z_grid = cos_phi_grid
 
     # face colors
     coolwarm = plt.get_cmap('coolwarm')
-    norm = mcolors.Normalize(vmin=dist.min(), vmax=dist.max())
-    fcolors = coolwarm(norm(dist))
+    norm = mcolors.Normalize(vmin=data.min(), vmax=data.max())
+    fcolors = coolwarm(norm(data))
 
     # plot
     fig = plt.figure(figsize=[10, 10])
     ax = fig.add_subplot(1, 1, 1, projection='3d')
 
-    ax.plot_surface(X, Y, Z, rstride=1, cstride=1, cmap=coolwarm, facecolors=fcolors,
+    ax.plot_surface(x_grid, y_grid, z_grid, rstride=1, cstride=1, cmap=coolwarm, facecolors=fcolors,
                     linewidth=0, antialiased=False)
 
     plt.title(title)
