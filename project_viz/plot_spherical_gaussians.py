@@ -21,7 +21,7 @@ def save_figure(output_path):
 
     image_path = os.path.join(output_path, 'spherical_gaussian.png')
     fig.savefig(image_path)
-    print(image_path, 'saved.')
+    print('Figure saved: ', image_path)
 
 
 if __name__ == '__main__':

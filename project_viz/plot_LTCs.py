@@ -22,6 +22,7 @@ def save_figure(output_path):
 
     image_path = os.path.join(output_path, 'clamped_cosine.png')
     fig.savefig(image_path)
+    print('Figure saved: ', image_path)
 
     # plot LTC
     fig.clear()
@@ -39,6 +40,7 @@ def save_figure(output_path):
 
     image_path = os.path.join(output_path, 'LTC.png')
     fig.savefig(image_path)
+    print('Figure saved: ', image_path)
 
 
 def save_animation(output_path):
@@ -72,10 +74,11 @@ def save_animation(output_path):
     anim_path = os.path.join(output_path, 'LTC.mp4')
     print('Rendering {0} ...'.format(anim_path))
     anim.save(anim_path, fps=24,
-              progress_callback=lambda i, n: print('Frame {0} of {1} ...'.format(i, n))
+              progress_callback=lambda i, n: print('\t Frame {0} of {1} ...'.format(i, n))
               )
     time_cost = time.perf_counter() - star_time
-    print('Done, {0:.2f} seconds'.format(time_cost))
+    print('\t Done, {0:.2f} seconds'.format(time_cost))
+    print('Animation saved: ', anim_path)
 
 
 if __name__ == '__main__':
