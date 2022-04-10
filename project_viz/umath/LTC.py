@@ -2,8 +2,7 @@ import numpy as np
 
 
 class LTC:
-    def __init__(self, amplitude, forward, up, scale, skew):
-        self.amplitude = amplitude
+    def __init__(self, forward, up, scale, skew):
         self.forward = LTC.normalize(forward)
         self.up = LTC.normalize(up)
         self.right = np.cross(self.forward, self.up)
@@ -32,4 +31,4 @@ class LTC:
         Jacobian = self.det / (n ** 3)
 
         do = np.maximum(0, l_o[2] / np.pi)
-        return self.amplitude * do / Jacobian
+        return  do / Jacobian

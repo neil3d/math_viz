@@ -19,6 +19,7 @@ def save_figure(output_path):
     ax = fig.add_subplot(1, 1, 1, projection='3d')
     spherical_plot.heatmap(do_clamped_cosine, ax)
     plt.title('Clamped Cosine Distribution')
+    plt.show()
 
     image_path = os.path.join(output_path, 'clamped_cosine.png')
     fig.savefig(image_path)
@@ -28,15 +29,15 @@ def save_figure(output_path):
     fig.clear()
     ax = fig.add_subplot(1, 1, 1, projection='3d')
 
-    amplitude = 1
     forward = np.array([0, 1, 0], dtype='float')
     up = np.array([0, 0, 1], dtype='float')
     scale = np.array([1, 1, 1], dtype='float')
     skew = 0
-    ltc = LTC.LTC(amplitude, forward, up, scale, skew)
+    ltc = LTC.LTC(forward, up, scale, skew)
 
     plt.title('Linearly Transformed Cosines')
     spherical_plot.heatmap(lambda w: ltc.evaluate(w), ax)
+    plt.show()
 
     image_path = os.path.join(output_path, 'LTC.png')
     fig.savefig(image_path)
@@ -54,14 +55,13 @@ def save_animation(output_path):
 
         mat_rot = R.from_euler('xyz', [pitch, yaw, roll], degrees=True).as_matrix()
 
-        amplitude = 1
         forward = mat_rot[1]
         up = mat_rot[2]
 
         s = 0.2+(np.sin(np.deg2rad(pitch))+1)*0.5
         scale = np.array([s, 1, 1], dtype='float')
         skew = 0
-        ltc = LTC.LTC(amplitude, forward, up, scale, skew)
+        ltc = LTC.LTC(forward, up, scale, skew)
 
         ax.clear()
         plt.title('Linearly Transformed Cosines, Rotation=({pitch},{yaw},{roll}), scale[x]={scale:.2f}'.format(
