@@ -58,13 +58,14 @@ def save_animation(output_path):
         forward = mat_rot[1]
         up = mat_rot[2]
 
-        scale = np.array([1, 1, 1], dtype='float')
+        s = 0.2+(np.sin(np.deg2rad(pitch))+1)*0.5
+        scale = np.array([s, 1, 1], dtype='float')
         skew = 0
         ltc = LTC.LTC(amplitude, forward, up, scale, skew)
 
         ax.clear()
-        plt.title('Linearly Transformed Cosines, Rotation({pitch},{yaw},{roll})'.format(
-            pitch=pitch, yaw=yaw, roll=roll
+        plt.title('Linearly Transformed Cosines, Rotation=({pitch},{yaw},{roll}), scale[x]={scale:.2f}'.format(
+            pitch=pitch, yaw=yaw, roll=roll, scale=s
         ))
         spherical_plot.heatmap(lambda w: ltc.evaluate(w), ax)
 
