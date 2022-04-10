@@ -77,7 +77,7 @@ def save_animation(output_path):
               progress_callback=lambda i, n: print('\t Frame {0} of {1} ...'.format(i, n), end='\r')
               )
     time_cost = time.perf_counter() - star_time
-    print('\t Done, {0:.2f} seconds'.format(time_cost))
+    print('\n\t Done, {0:.2f} seconds'.format(time_cost))
     print('Animation saved: ', anim_path)
 
 
