@@ -48,7 +48,7 @@ def save_animation(output_path):
     ax = fig.add_subplot(1, 1, 1, projection='3d')
 
     def anim_ltc(i):
-        pitch = i*10
+        pitch = i * 10
         yaw = 0
         roll = 0
 
@@ -74,7 +74,7 @@ def save_animation(output_path):
     anim_path = os.path.join(output_path, 'LTC.mp4')
     print('Rendering {0} ...'.format(anim_path))
     anim.save(anim_path, fps=24,
-              progress_callback=lambda i, n: print('\t Frame {0} of {1} ...'.format(i, n))
+              progress_callback=lambda i, n: print('\t Frame {0} of {1} ...'.format(i, n), end='\r')
               )
     time_cost = time.perf_counter() - star_time
     print('\t Done, {0:.2f} seconds'.format(time_cost))
