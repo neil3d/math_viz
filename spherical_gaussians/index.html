@@ -1430,7 +1430,7 @@ $$</p>
 <p>都可以看做是定义在球面上的函数。由于它们是很复杂的函数，在离线渲染中，可以使用蒙特卡洛方法来求数值解。还有一个思路是：使用形式更简单的函数来近似这几个函数，然后求出解析解。</p>
 <p>球面高斯函数就是可以用来做这种近似的一个函数，主要有两方面的原因：</p>
 <ol>
-<li>它的积分比较好求，因为：$\int e^x d x = e^x$</li>
+<li>它有一个解析解：$\int_{\Omega}G(v)dv = 2\pi\frac{a}{\lambda}(1-e^{-2\lambda})$</li>
 <li>两个球面高斯函数的内积，有一个解决解，详见：The Inner Product 一节</li>
 </ol>
 <p>使用球面高斯函数近似求解渲染方程的详细推导，请见：<a href="https://www.microsoft.com/en-us/research/video/frequency-rendering-dynamic-spatially-varying-re%ef%ac%82ectance/">All-Frequency Rendering of Dynamic, Spatially-Varying Reflectance</a></p>
